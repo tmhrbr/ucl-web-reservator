@@ -1,7 +1,10 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const templateConfig = require('./src/template/app-config.hbs');
 
 const paths = {
     publicPath: path.resolve(__dirname, 'dist'),
@@ -92,13 +95,23 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            { 
+                test: /\.hbs$/,
+                use: 'handlebars-loader'
             }
         ]
     },
     plugins: [
         new CleanWebpackPlugin(paths.clean, { verbose: false }),
         new MiniCssExtractPlugin({
-            filename: "css/[name].css",
+            filename: 'css/[name].css',
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index-test.html',
+            template: './src/index.hbs',
+            templateParameters: templateConfig('buildings'),
+            hash: true,
         }),
         new CopyWebpackPlugin([
             { 

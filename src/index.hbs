@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Reservator3000</title>
+    <title>{{common.title}} - {{page.name}}</title>
 </head>
 
 <body>
@@ -14,36 +14,44 @@
 
         <header></header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">Reservator3000</a>
+            <a class="navbar-brand" href="#">{{common.title}}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-burger-btn">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="nav-burger-btn">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Buildings</a>
+                    {{#each common.pages}}
+                    <li class="nav-item {{this.active}}">
+                        <a class="nav-link" href="{{this.link}}">{{this.title}}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Rooms</a>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
         </nav>
 
-        <nav class="">
+        <nav>
             <ol class="breadcrumb navbar-righ">
                 <i class="far fa-building pt-1"></i>
-                <li class="ml-auto breadcrumb-item">
-                    <a href="#">Buildings</a>
+                {{#each common.breadcrumb}}
+                <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
+                    {{#unless this.active}}
+                        <a href="{{this.link}}">
+                    {{/unless}}
+
+                    {{this.title}}
+                    
+                    {{#unless this.active}}
+                        </a>
+                    {{/unless}}
                 </li>
-                <li class="breadcrumb-item active">Rooms</li>
+                {{/each}}
             </ol>
         </nav>
 
         <section>
             <h1 class="py-1">
-                <p>Buildings</p>
+                <p>{{page.name}}</p>
             </h1>
             <article class="">
                 <div class="row">
@@ -56,7 +64,7 @@
 
         <aside></aside>
 
-        <footer class="footer">tmhrbr © 2018</footer>
+        <footer class="footer">{{app.footer}}</footer>
     </div>
 
 </body>
