@@ -12691,3 +12691,7 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Brands';
   font-weight: 400; }
 
+footer {
+  position: absolute;
+  bottom: .5em; }
+

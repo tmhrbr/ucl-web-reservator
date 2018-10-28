@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Reservator - Buildings</title>
-<link href="css/index.css?683ab1bdab243d449029" rel="stylesheet"></head>
+    <title>{{common.title}} - {{page.name}}</title>
+</head>
 
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
         <header></header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="./index.html">
-                <i class="far fa-calendar-alt"></i> Reservator
+                <i class="far fa-calendar-alt"></i> {{common.title}}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-burger-btn">
                 <span class="navbar-toggler-icon"></span>
@@ -23,30 +23,34 @@
 
             <div class="collapse navbar-collapse" id="nav-burger-btn">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./index.html">Buildings</a>
+                    {{#each common.pages}}
+                    <li class="nav-item {{this.active}}">
+                        <a class="nav-link" href="{{this.link}}">{{this.title}}</a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./rooms.html">Rooms</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="./schedule.html">Schedule</a>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
         </nav>
 
         <nav>
             <ol class="breadcrumb navbar-righ">
-                <li class="breadcrumb-item active ml-auto">
-                    Buildings
+                {{#each common.breadcrumb}}
+                <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
+                    {{#unless this.active}}
+                        <a href="{{this.link}}">
+                    {{/unless}}
+                    {{this.title}}
+                    {{#unless this.active}}
+                        </a>
+                    {{/unless}}
                 </li>
+                {{/each}}
             </ol>
         </nav>
 
         <section>
             <h1 class="pt-2">
-                <p>Buildings</p>
+                <p>{{page.name}}</p>
             </h1>
             <article class="">
                 <div class="row">
@@ -54,22 +58,17 @@
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Name</th>
+                                {{#each page.headers}}
+                                    <th>{{this}}</th>
+                                {{/each}}
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each page.content}}
                                 <tr>
-                                    <td><a href="./rooms.html">Orchard View</a></td>
+                                    <td><a href="./schedule.html">{{this.name}}</a></td>
                                 </tr>
-                                <tr>
-                                    <td><a href="./rooms.html">The Beeches</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="./rooms.html">Elephant&#x27;s House</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="./rooms.html">The Old Lighthouse</a></td>
-                                </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
@@ -79,9 +78,9 @@
 
         <aside></aside>
 
-        <footer class="footer">tmhrbr © 2018</footer>
+        <footer class="footer">{{common.footer}}</footer>
     </div>
 
-<script type="text/javascript" src="js/index.js?683ab1bdab243d449029"></script></body>
+</body>
 
 </html>

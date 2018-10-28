@@ -14,7 +14,9 @@
 
         <header></header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="#">{{common.title}}</a>
+            <a class="navbar-brand" href="./index.html">
+                <i class="far fa-calendar-alt"></i> {{common.title}}
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-burger-btn">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,15 +34,12 @@
 
         <nav>
             <ol class="breadcrumb navbar-righ">
-                <i class="far fa-building pt-1"></i>
                 {{#each common.breadcrumb}}
                 <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
                     {{#unless this.active}}
                         <a href="{{this.link}}">
                     {{/unless}}
-
                     {{this.title}}
-                    
                     {{#unless this.active}}
                         </a>
                     {{/unless}}
@@ -50,13 +49,28 @@
         </nav>
 
         <section>
-            <h1 class="py-1">
+            <h1 class="pt-2">
                 <p>{{page.name}}</p>
             </h1>
             <article class="">
                 <div class="row">
                     <div class="col">
-                        Hi.
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                {{#each page.headers}}
+                                    <th>{{this}}</th>
+                                {{/each}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each page.content}}
+                                <tr>
+                                    <td><a href="./rooms.html">{{this.name}}</a></td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </article>
@@ -64,7 +78,7 @@
 
         <aside></aside>
 
-        <footer class="footer">{{app.footer}}</footer>
+        <footer class="footer">{{common.footer}}</footer>
     </div>
 
 </body>

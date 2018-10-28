@@ -10,17 +10,57 @@ module.exports = function (basePage) {
     }
 };
 
-function getPage(basePage) {
+function getContent(basePage) {
     return {
-        buildings: { name: 'Buildings' },
-        rooms: { name: 'Rooms' }
+        buildings: {
+            headers: ['Name'],
+            content: [
+                { name: 'Orchard View' },
+                { name: 'The Beeches' },
+                { name: 'Elephant\'s House' },
+                { name: 'The Old Lighthouse' }
+            ]
+        },
+        rooms: {
+            headers: ['Name'],
+            content: [
+                { name: 'Scrgray' },
+                { name: 'Hulotus' },
+                { name: 'Teskelis' },
+                { name: 'Stoniar' },
+                { name: 'Teganeus' },
+                { name: 'Kokago' },
+                { name: 'Malgo' },
+                { name: 'Fornray' }
+            ]
+        },
+        schedule: {
+            headers: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            content: [
+                [ 'WEB', 'BI-ZMA'],
+                [ 'BI-CAO'],
+                [ 'BI-PS1', 'CSharp', 'MA2']
+            ]
+            .map((sub) => sub.length < 8 ? sub.concat(Array(7-sub.length).fill('')) : sub)
+            .map((sub, i) => [`${8+i}:00`].concat(sub))
+        }
+    }[basePage];
+};
+
+function getPage(basePage) {
+    console.log(getContent(basePage).content);
+    return {
+        buildings: { name: 'Buildings', content: getContent(basePage).content, headers: getContent(basePage).headers },
+        rooms: { name: 'Rooms', content: getContent(basePage).content, headers: getContent(basePage).headers },
+        schedule: { name: 'Schedule', content: getContent(basePage).content, headers: getContent(basePage).headers }
     }[basePage];
 };
 
 function getPages(basePage) {
     return [
-        { title: 'Buildings', link: '/buildings.html', active: getActive(basePage, 'buildings') },
-        { title: 'Rooms', link: '/rooms.html', active: getActive(basePage, 'rooms') }
+        { title: 'Buildings', link: './index.html', active: getActive(basePage, 'buildings') },
+        { title: 'Rooms', link: './rooms.html', active: getActive(basePage, 'rooms') },
+        { title: 'Schedule', link: './schedule.html', active: getActive(basePage, 'schedule') }
     ]
 };
 

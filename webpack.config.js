@@ -108,9 +108,21 @@ module.exports = {
             filename: 'css/[name].css',
         }),
         new HtmlWebpackPlugin({
-            filename: 'index-test.html',
+            filename: 'index.html',
             template: './src/index.hbs',
             templateParameters: templateConfig('buildings'),
+            hash: true,
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'rooms.html',
+            template: './src/rooms.hbs',
+            templateParameters: templateConfig('rooms'),
+            hash: true,
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'schedule.html',
+            template: './src/schedule.hbs',
+            templateParameters: templateConfig('schedule'),
             hash: true,
         }),
         new CopyWebpackPlugin([
