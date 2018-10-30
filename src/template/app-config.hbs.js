@@ -15,10 +15,10 @@ function getContent(basePage) {
         buildings: {
             headers: ['Name'],
             content: [
-                { name: 'Orchard View' },
-                { name: 'The Beeches' },
-                { name: 'Elephant\'s House' },
-                { name: 'The Old Lighthouse' }
+                { name: 'Orchard View', section: 'Section A' },
+                { name: 'The Beeches', section: 'Section A' },
+                { name: 'Elephant\'s House', section: 'Section B' },
+                { name: 'The Old Lighthouse', section: 'Section B' }
             ]
         },
         rooms: {
@@ -39,9 +39,17 @@ function getContent(basePage) {
             content: [
                 [ 'WEB', 'BI-ZMA'],
                 [ 'BI-CAO'],
-                [ 'BI-PS1', 'CSharp', 'MA2']
+                [ 'BI-PS1', 'CSharp', 'MA2'],
+                [ '', 'PR1'],
+                [ '', '', 'PR2'],
+                [ '', '', '', 'BI-MLO'],
+                [],
+                [],
+                ['', '', '', '', 'ARD', ''],
+                [],
+                [],
             ]
-            .map((sub) => sub.length < 8 ? sub.concat(Array(7-sub.length).fill('')) : sub)
+            .map(sub => sub.length < 8 ? sub.concat(Array(7-sub.length).fill('')) : sub)
             .map((sub, i) => [`${8+i}:00`].concat(sub))
         }
     }[basePage];

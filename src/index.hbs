@@ -37,11 +37,9 @@
                 {{#each common.breadcrumb}}
                 <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
                     {{#unless this.active}}
-                        <a href="{{this.link}}">
-                    {{/unless}}
-                    {{this.title}}
-                    {{#unless this.active}}
-                        </a>
+                    <a href="{{this.link}}">
+                        {{/unless}} {{this.title}} {{#unless this.active}}
+                    </a>
                     {{/unless}}
                 </li>
                 {{/each}}
@@ -53,26 +51,23 @@
                 <p>{{page.name}}</p>
             </h1>
             <article class="">
-                <div class="row">
+                {{#grouped_each 4 page.content}}
+                <div class="row pb-3">
+                    {{#each this}}
                     <div class="col">
-                        <table class="table">
-                            <thead class="thead-light">
-                                <tr>
-                                {{#each page.headers}}
-                                    <th>{{this}}</th>
-                                {{/each}}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each page.content}}
-                                <tr>
-                                    <td><a href="./rooms.html">{{this.name}}</a></td>
-                                </tr>
-                                {{/each}}
-                            </tbody>
-                        </table>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{this.section}}</h6>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="./rooms.html" class="card-link">See rooms</a>
+                                <a href="./schedule.html" class="card-link">See schedule</a>
+                            </div>
+                        </div>
                     </div>
+                    {{/each}}
                 </div>
+                {{/grouped_each}}
             </article>
         </section>
 
