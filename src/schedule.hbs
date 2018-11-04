@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
 
         <header></header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -37,11 +37,9 @@
                 {{#each common.breadcrumb}}
                 <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
                     {{#unless this.active}}
-                        <a href="{{this.link}}">
-                    {{/unless}}
-                    {{this.title}}
-                    {{#unless this.active}}
-                        </a>
+                    <a href="{{this.link}}">
+                        {{/unless}} {{this.title}} {{#unless this.active}}
+                    </a>
                     {{/unless}}
                 </li>
                 {{/each}}
@@ -50,18 +48,20 @@
 
         <section>
             <h1 class="pt-2">
-                <p>{{page.name}}</p>
+                <i class="fas fa-calendar-alt"></i> {{page.name}}
             </h1>
-            <article>
-                <div class="row">
-                    <div class="col">
+            <div class="row">
+                <div class="col">
+                    <div class="table-responsive">
                         <table class="table table-bordered schedule">
                             <thead class="thead-light">
                                 <tr>
-                                    <th><i class="far fa-clock"></i></th>
-                                {{#each page.headers}}
+                                    <th class="text-center">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </th>
+                                    {{#each page.headers}}
                                     <th>{{this}}</th>
-                                {{/each}}
+                                    {{/each}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,7 +76,7 @@
                         </table>
                     </div>
                 </div>
-            </article>
+            </div>
         </section>
 
         <aside></aside>

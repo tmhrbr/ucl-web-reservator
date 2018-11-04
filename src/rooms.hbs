@@ -10,9 +10,8 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
 
-        <header></header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" href="./index.html">
                 <i class="far fa-calendar-alt"></i> {{common.title}}
@@ -47,28 +46,71 @@
         </nav>
 
         <section>
-            <h1 class="pt-2">
-                <p>{{page.name}}</p>
-            </h1>
-            <article>
-                {{#grouped_each 6 page.content}}
-                <div class="row pb-3">
-                    {{#each this}}
-                    <div class="col-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">{{this.name}}</h5>
-                                <a href="./schedule.html" class="card-link">See schedule</a>
+            <div class="row">
+                <div class="col-lg-4">
+                    <form class="form-inline">
+                        <h1 class="pt-2">
+                            <i class="fas fa-file-signature"></i> {{page.name}} 
+                        </h1>
+                        <div class="ml-xl-auto input-group">
+                            <input type="text" class="form-control" placeholder="Seach rooms">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search pt-1"></i>
+                                </button>
                             </div>
                         </div>
+                    </form>
+                    <div class="pt-2 pt-md-0">
+                        {{#grouped_each 4 page.content.rooms}}
+                        <div class="row">
+                            {{#each this}}
+                            <div class="col-lg-6 col-md-3 col-sm-6 pb-2">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{this.name}}</h5>
+                                        <a href="./schedule.html" class="card-link">See schedule</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                        {{/grouped_each}}
                     </div>
-                    {{/each}}
+                    <div class="row pl-3 mb-3">
+                        <a href="#">See 5 more rooms</a>
+                    </div>
                 </div>
-                {{/grouped_each}}
-            </article>
+                <div class="col-lg-8">
+                    <h3 class="pt-3">
+                        <i class="fas fa-calendar-alt"></i> Today schedule
+                    </h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-center">
+                                        <i class="fas fa-file-signature"></i>
+                                    </th>
+                                    {{#each page.content.scheduleTimes}}
+                                    <th>{{this}}</th>
+                                    {{/each}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each page.content.schedule as |timeline|}}
+                                <tr>
+                                    {{#each timeline as |item|}}
+                                    <td>{{item}}</td>
+                                    {{/each}}
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </section>
-
-        <aside></aside>
 
         <footer class="footer">{{common.footer}}</footer>
     </div>

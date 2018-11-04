@@ -10,56 +10,74 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
 
-        <header></header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="./index.html">
-                <i class="far fa-calendar-alt"></i> {{common.title}}
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-burger-btn">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="./index.html">
+                    <i class="far fa-calendar-alt"></i> {{common.title}}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-burger-btn">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="nav-burger-btn">
-                <ul class="navbar-nav mr-auto">
-                    {{#each common.pages}}
-                    <li class="nav-item {{this.active}}">
-                        <a class="nav-link" href="{{this.link}}">{{this.title}}</a>
+                <div class="collapse navbar-collapse" id="nav-burger-btn">
+                    <ul class="navbar-nav mr-auto">
+                        {{#each common.pages}}
+                        <li class="nav-item {{this.active}}">
+                            <a class="nav-link" href="{{this.link}}">{{this.title}}</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </nav>
+
+            <nav>
+                <ol class="breadcrumb navbar-righ">
+                    {{#each common.breadcrumb}}
+                    <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
+                        {{#unless this.active}}
+                        <a href="{{this.link}}">
+                            {{/unless}} {{this.title}} {{#unless this.active}}
+                        </a>
+                        {{/unless}}
                     </li>
                     {{/each}}
-                </ul>
-            </div>
-        </nav>
-
-        <nav>
-            <ol class="breadcrumb navbar-righ">
-                {{#each common.breadcrumb}}
-                <li class="breadcrumb-item {{this.active}} {{#if @first}}ml-auto{{/if}}">
-                    {{#unless this.active}}
-                    <a href="{{this.link}}">
-                        {{/unless}} {{this.title}} {{#unless this.active}}
-                    </a>
-                    {{/unless}}
-                </li>
-                {{/each}}
-            </ol>
-        </nav>
+                </ol>
+            </nav>
+        </header>
 
         <section>
-            <h1 class="pt-2">
-                <p>{{page.name}}</p>
-            </h1>
-            <article class="">
+            <form class="form-inline">
+                <h1 class="pt-2">
+                    <i class="fas fa-gopuram"></i> {{page.name}}
+                </h1>
+
+                <div class="input-group ml-auto">
+                    <input type="text" class="form-control" placeholder="Seach buildings">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search pt-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <article class="pt-2 pt-sm-0">
                 {{#grouped_each 4 page.content}}
                 <div class="row pb-3">
                     {{#each this}}
-                    <div class="col">
+                    <div class="col-md-6 col-sm-6 col-lg-3 pb-2">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{this.name}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{this.section}}</h6>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="media">
+                                    <aside>
+                                        <p class="pt-2 text-justify">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent dapibus. Curabitur
+                                            ligula sapien, pulvinar a vestibulum quis, facilisis vel sapien. Integer lacinia.
+                                        </p>
+                                    </aside>
+                                </div>
                                 <a href="./rooms.html" class="card-link">See rooms</a>
                                 <a href="./schedule.html" class="card-link">See schedule</a>
                             </div>
@@ -68,10 +86,11 @@
                     {{/each}}
                 </div>
                 {{/grouped_each}}
+                <div class="row pl-3 mb-3">
+                    <a href="#">See 5 more buildings</a>
+                </div>
             </article>
         </section>
-
-        <aside></aside>
 
         <footer class="footer">{{common.footer}}</footer>
     </div>

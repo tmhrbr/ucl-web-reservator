@@ -1,6 +1,7 @@
-footer {
-    position: absolute;
-    bottom: .5em;
+body {
+    min-height: 98vh;
+    position: relative;
+    margin: 0;
 }
 
 .schedule {
@@ -8,4 +9,11 @@ footer {
         background-color: #E3E3E3;
         cursor: pointer;
     }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    padding: 10px 0 5px 0;
+    height: 10px;
 }

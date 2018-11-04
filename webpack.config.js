@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const templateConfig = require('./src/template/app-config.hbs');
+const templateConfig = require('./src/template/app-mock');
 
 const paths = {
     publicPath: path.resolve(__dirname, 'dist'),

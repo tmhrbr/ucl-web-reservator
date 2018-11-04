@@ -23,40 +23,48 @@ function getContent(basePage) {
         },
         rooms: {
             headers: ['Name'],
-            content: [
-                { name: 'Scrgray' },
-                { name: 'Hulotus' },
-                { name: 'Teskelis' },
-                { name: 'Stoniar' },
-                { name: 'Teganeus' },
-                { name: 'Kokago' },
-                { name: 'Malgo' },
-                { name: 'Fornray' }
-            ]
+            content: {
+                rooms: [
+                    { name: 'Scrgray' },
+                    { name: 'Hulotus' },
+                    { name: 'Teskelis' },
+                    { name: 'Stoniar' },
+                    { name: 'Teganeus' },
+                    { name: 'Kokago' },
+                    { name: 'Malgo' },
+                    { name: 'Fornray' }
+                ],
+                scheduleTimes: new Array(12).fill(1).map((_, i) => `${(i + 8)}:00`),
+                schedule: [
+                    ['Scrgray', 'ARD', '', '', 'GIT'],
+                    ['Hulotus', '', '', 'PR1', 'PR1', 'PR2', 'PR2'],
+                    ['Teskelis', 'MA1', 'MA1', 'MA2', 'MA2', 'BI-ZMA'],
+                    ['Stoniar', 'MLO', 'MLO', '', '', 'TAU', 'TAU'],
+                    ['Teganeus', '', '', '', 'PA1', 'PA1'],
+                    ['Kokago', '', '', '', '', '', 'ARM'],
+                    ['Malgo'],
+                    ['Fornray']
+                ].map(sub => sub && sub.length < 14 ? sub.concat(Array(13 - sub.length).fill('')) : sub)
+            },
         },
         schedule: {
-            headers: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            headers: new Array(12).fill(1).map((_, i) => `${(i + 8)}:00`),
             content: [
-                [ 'WEB', 'BI-ZMA'],
-                [ 'BI-CAO'],
-                [ 'BI-PS1', 'CSharp', 'MA2'],
-                [ '', 'PR1'],
-                [ '', '', 'PR2'],
-                [ '', '', '', 'BI-MLO'],
-                [],
-                [],
-                ['', '', '', '', 'ARD', ''],
-                [],
-                [],
-            ]
-            .map(sub => sub.length < 8 ? sub.concat(Array(7-sub.length).fill('')) : sub)
-            .map((sub, i) => [`${8+i}:00`].concat(sub))
+                ['Monday', '', '', '', '', 'MA1', 'MA1', 'MA2', 'MA2'],
+                ['Tuesday', 'PR1', 'PR1', 'PR2', 'PR2', 'ALG', 'ALG'],
+                ['Wednesday', '', '', 'BI-ZMA', 'BI-ZMA'],
+                ['Thursday', 'ARD', 'ARD', 'MLO', 'MLO', 'CSharp', 'CSharp', 'ALG', 'ALG'],
+                ['Friday', 'PA1', 'PA1', 'EKO', 'EKO', 'MRO1', 'MRO1'],
+                ['Saturday'],
+                ['Sunday', '', '', '', '', '', '', 'BI-LIN']
+            ].map(sub => sub && sub.length < 14 ? sub.concat(Array(13 - sub.length).fill('')) : sub)
         }
     }[basePage];
 };
 
 function getPage(basePage) {
     console.log(getContent(basePage).content);
+    console.log(getContent(basePage).scheduleTimes);
     return {
         buildings: { name: 'Buildings', content: getContent(basePage).content, headers: getContent(basePage).headers },
         rooms: { name: 'Rooms', content: getContent(basePage).content, headers: getContent(basePage).headers },
